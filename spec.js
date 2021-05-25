@@ -1,37 +1,21 @@
-describe('angularjs homepage', function() {
+const { browser, element, by } = require("protractor");
+
+describe('Calculator test', function() {
   it('should greet the named user', function() {
-    browser.get('http://www.angularjs.org');
+   
+    browser.get("https://juliemr.github.io/protractor-demo/");
 
-    element(by.model('yourName')).sendKeys('Julie');
+    element(by.model("first")).sendKeys("13");
+    element(by.model("second")).sendKeys("10");
 
-    var greeting = element(by.binding('yourName'));
+    element(by.id("gobutton")).click();
 
-    expect(greeting.getText()).toEqual('Hello Julie!');
+    var text = element(by.css("h2[class='ng-binding']")).getText();
+    
+    expect(text).toBe("23");
+
   });
-
-  describe('todo list', function() {
-    var todoList;
-
-    beforeEach(function() {
-      browser.get('http://www.angularjs.org');
-
-      todoList = element.all(by.repeater('todo in todoList.todos'));
-    });
-
-    it('should list todos', function() {
-      expect(todoList.count()).toEqual(2);
-      expect(todoList.get(1).getText()).toEqual('build an AngularJS app');
-    });
-
-    it('should add a todo', function() {
-      var addTodo = element(by.model('todoList.todoText'));
-      var addButton = element(by.css('[value="add"]'));
-
-      addTodo.sendKeys('write a protractor test');
-      addButton.click();
-
-      expect(todoList.count()).toEqual(3);
-      expect(todoList.get(2).getText()).toEqual('write a protractor test');
-    });
-  });
+  it("Subtraction of numbers",function(){
+    
+  })
 });
